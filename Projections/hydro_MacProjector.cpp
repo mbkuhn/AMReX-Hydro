@@ -297,13 +297,13 @@ MacProjector::project (const Vector<MultiFab*>& phi_inout, Real reltol, Real ato
 {
     const auto nlevs = int(m_rhs.size());
     for (int ilev = 0; ilev < nlevs; ++ilev) {
-        MultiFab::Copy(m_phi[ilev], *phi_inout[ilev], 0, 0, 1, 0);
+        MultiFab::Copy(m_phi[ilev], *phi_inout[ilev], 0, 0, 1, 1);
     }
 
     project_doit(reltol, atol);
 
     for (int ilev = 0; ilev < nlevs; ++ilev) {
-        MultiFab::Copy(*phi_inout[ilev], m_phi[ilev], 0, 0, 1, 0);
+        MultiFab::Copy(*phi_inout[ilev], m_phi[ilev], 0, 0, 1, 1);
     }
 }
 
